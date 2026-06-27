@@ -11,6 +11,10 @@
     <li v-for="singleClass in classes" :key="singleClass">{{ singleClass }}</li>
   </ol>
 
+  <form @submit.prevent>
+    <input v-model="name" type="text" placeholder="Enter your name" />
+  </form>
+
   <button v-on:click="changeUserType">Change user type</button>
 </template>
 
