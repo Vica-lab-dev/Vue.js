@@ -3,6 +3,9 @@
 
   <p v-if="professor">User is a professor</p>
   <p v-else>User is not a professor</p>
+
+  <p v-if="age >= 18">User is 18+</p>
+  <p v-else>User is not 18+</p>
 </template>
 
 <script>
@@ -11,7 +14,8 @@
     data() {
       return {
         name: "Vica",
-        professor: false
+        professor: false,
+        age: 28,
       }
     }
   }
