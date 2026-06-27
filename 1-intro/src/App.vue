@@ -6,6 +6,10 @@
 
   <p v-if="age >= 18">User is 18+</p>
   <p v-else>User is not 18+</p>
+
+  <ol>
+    <li v-for="singleClass in classes" :key="singleClass">{{ singleClass }}</li>
+  </ol>
 </template>
 
 <script>
@@ -16,6 +20,7 @@
         name: "Vica",
         professor: false,
         age: 28,
+        classes: ["JavaScript", "Vue.js", "Node.js", "ReactJS"],
       }
     }
   }
