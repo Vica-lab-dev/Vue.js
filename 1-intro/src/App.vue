@@ -27,11 +27,7 @@
     },
     methods: {
       changeUserType() {
-        if(this.professor) {
-          this.professor = false;
-        } else {
-          this.professor = true;
-        }
+        this.professor = !this.professor;
       }
     }
   }
