@@ -8,7 +8,7 @@
   <p v-else>User is not 18+</p>
 
   <ol>
-    <li v-for="singleClass in classes" :key="singleClass">{{ singleClass }}</li>
+    <li v-on:click="deleteClass(singleClass)" v-for="singleClass in classes" :key="singleClass">{{ singleClass }}</li>
   </ol>
 
   <form @submit.prevent>
@@ -32,6 +32,11 @@
     methods: {
       changeUserType() {
         this.professor = !this.professor;
+      },
+
+      deleteClass(name) {
+        const index = this.classes.indexOf(name);
+        this.classes.splice(index, 1)
       }
     }
   }
