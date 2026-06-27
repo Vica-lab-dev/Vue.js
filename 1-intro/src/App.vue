@@ -27,7 +27,11 @@
     },
     methods: {
       changeUserType() {
-        console.log("changeUserType");
+        if(this.professor) {
+          this.professor = false;
+        } else {
+          this.professor = true;
+        }
       }
     }
   }
