@@ -10,6 +10,8 @@
   <ol>
     <li v-for="singleClass in classes" :key="singleClass">{{ singleClass }}</li>
   </ol>
+
+  <button v-on:click="changeUserType">Change user type</button>
 </template>
 
 <script>
@@ -21,6 +23,11 @@
         professor: false,
         age: 28,
         classes: ["JavaScript", "Vue.js", "Node.js", "ReactJS"],
+      }
+    },
+    methods: {
+      changeUserType() {
+        console.log("changeUserType");
       }
     }
   }
