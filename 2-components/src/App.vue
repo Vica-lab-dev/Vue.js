@@ -16,7 +16,7 @@
   </form>
 
   <form @submit.prevent>
-    <input v-model="className" type="text" placeholder="Enter your class" />
+    <input ref="classInputName" type="text" placeholder="Enter your class" />
     <button v-on:click="addClass" type="button" value="Add class">Add class</button>
   </form>
 
@@ -32,7 +32,6 @@ export default {
       professor: false,
       age: 28,
       classes: ["JavaScript", "Vue.js", "Node.js", "ReactJS"],
-      className: null,
     }
   },
   methods: {
@@ -46,18 +45,21 @@ export default {
     },
 
     addClass() {
-      if(this.className === null || this.className.trim() === "") {
+      const className = this.$refs.classInputName.value;
+      console.log(className);
+
+      if(className === null || className.trim() === "") {
         return alert("Please enter a valid class!");
       }
 
       const courses = this.classes.map(value => value.toLowerCase());
-      const courseName = this.className.toLowerCase();
+      const courseName = className.toLowerCase();
 
       if(courses.includes(courseName)) {
         return alert("The class name already exists!");
       }
 
-      this.classes.push(this.className);
+      this.classes.push(className);
     }
   }
 }
