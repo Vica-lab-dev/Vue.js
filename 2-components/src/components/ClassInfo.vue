@@ -1,5 +1,5 @@
 <template>
-  <p>Course: {{ className }}</p>
+  <p>Details: {{ className }} - {{ courseInfo[className].price }}</p>
 </template>
 
 <script>
