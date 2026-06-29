@@ -1,5 +1,5 @@
 <template>
-  <p v-if="courseInfo[className.toLowerCase()]">Details: {{ className }} - ${{ courseInfo[className.toLowerCase()].price }}</p>
+  <p v-if="courseInfo[classNameLower]">Details: {{ className }} - ${{ courseInfo[classNameLower].price }}</p>
   <p v-else>{{ className }} - No information</p>
 </template>
 
@@ -10,6 +10,11 @@ export default {
     className: {
       type: String,
       required: true
+    }
+  },
+  computed: {
+    classNameLower() {
+      return this.className.toLowerCase();
     }
   },
   data() {
