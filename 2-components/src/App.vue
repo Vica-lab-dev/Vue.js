@@ -1,5 +1,10 @@
 <template>
   <Navigation></Navigation>
+
+  <div v-for="(name, index) in classes" :key="index">
+    <ClassInfoComponent :className="name"></ClassInfoComponent>
+  </div>
+
   <ClassInfoComponent :className="'ReactJS'"></ClassInfoComponent>
 
   <h1>Hello {{ name }}</h1>
