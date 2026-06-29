@@ -1,4 +1,6 @@
 <template>
+  <Navigation></Navigation>
+
   <h1>Hello {{ name }}</h1>
 
   <p v-if="professor">User is a professor</p>
@@ -24,8 +26,12 @@
 </template>
 
 <script>
+
+import Navigation from "@/components/Navigation.vue";
+
 export default {
   name: "App",
+  components: {Navigation},
   data() {
     return {
       name: "Vica",
