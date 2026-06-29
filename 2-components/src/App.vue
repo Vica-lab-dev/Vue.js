@@ -1,5 +1,6 @@
 <template>
   <Navigation></Navigation>
+  <ClassInfoComponent :className="'ReactJS'"></ClassInfoComponent>
 
   <h1>Hello {{ name }}</h1>
 
@@ -28,10 +29,11 @@
 <script>
 
 import Navigation from "@/components/Navigation.vue";
+import ClassInfoComponent from "@/components/ClassInfo.vue";
 
 export default {
   name: "App",
-  components: {Navigation},
+  components: {Navigation, ClassInfoComponent},
   data() {
     return {
       name: "Vica",
