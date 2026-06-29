@@ -16,8 +16,8 @@
   </form>
 
   <form @submit.prevent>
-    <input ref="classInputName" type="text" placeholder="Enter your class" />
-    <button v-on:click="addClass" type="button" value="Add class">Add class</button>
+    <input ref="classInputName" v-on:keyup="checkClassNameValidity" type="text" placeholder="Enter your class" />
+    <button :disabled="disabledClassButton" v-on:click="addClass" type="button" value="Add class">Add class</button>
   </form>
 
   <button v-on:click="changeUserType">Change user type</button>
@@ -32,6 +32,7 @@ export default {
       professor: false,
       age: 28,
       classes: ["JavaScript", "Vue.js", "Node.js", "ReactJS"],
+      disabledClassButton: true,
     }
   },
   methods: {
@@ -46,21 +47,24 @@ export default {
 
     addClass() {
       const className = this.$refs.classInputName.value;
-      console.log(className);
 
-      if(className === null || className.trim() === "") {
-        return alert("Please enter a valid class!");
-      }
+      this.classes.push(className);
+    },
 
+    checkClassNameValidity() {
+      const className = this.$refs.classInputName.value;
       const courses = this.classes.map(value => value.toLowerCase());
       const courseName = className.toLowerCase();
 
-      if(courses.includes(courseName)) {
-        return alert("The class name already exists!");
+      if(className === null || className.trim() === "") {
+        this.disabledClassButton = true;
+      } else if(courses.includes(courseName)) {
+        this.disabledClassButton = true;
+      } else {
+        this.disabledClassButton = false;
       }
-
-      this.classes.push(className);
     }
+
   }
 }
 </script>
