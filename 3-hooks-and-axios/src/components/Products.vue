@@ -4,6 +4,7 @@
   </ul>
 
   <p v-if="!fetchedProducts.length">Loading products...</p>
+  <p v-if="apiError"> {{ apiError }}</p>
 
   <ul v-if="fetchedProducts.length">
     <li v-for="product in fetchedProducts" :key="product.id">
@@ -34,6 +35,7 @@ export default {
       ],
       isLoading: true,
       fetchedProducts: [],
+      apiError: null,
     };
   },
 
@@ -52,6 +54,7 @@ export default {
   mounted() {
     axios.get("https://dummyjson.com/products")
         .then(response => this.fetchedProducts = response.data.products)
+        .catch(() => this.apiError = "Failed to load products. Please try again later.")
   },
 }
 </script>
