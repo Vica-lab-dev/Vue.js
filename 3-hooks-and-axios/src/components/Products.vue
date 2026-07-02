@@ -2,9 +2,19 @@
   <ul>
     <li v-for="phone in phones" :key="phone.name">Name: {{ phone.name }} - Price: {{ phone.price }} - Stock: {{ phone.amount }}</li>
   </ul>
+
+  <p v-if="!fetchedProducts.length">Loading products...</p>
+
+  <ul v-if="fetchedProducts.length">
+    <li v-for="product in fetchedProducts" :key="product.id">
+      {{ product.title }} - ${{ product.price }} - Stock: {{ product.stock }}
+    </li>
+  </ul>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: 'Products',
 
@@ -21,7 +31,9 @@ export default {
         { name: "Motorola Edge 50 Pro", price: 649, amount: 18 },
         { name: "Honor Magic7 Pro", price: 1099, amount: 0 },
         { name: "Huawei Pura 70 Pro", price: 999, amount: 10 }
-      ]
+      ],
+      isLoading: true,
+      fetchedProducts: [],
     };
   },
 
@@ -38,7 +50,8 @@ export default {
   },
 
   mounted() {
-    console.log("mounted");
+    axios.get("https://dummyjson.com/products")
+        .then(response => this.fetchedProducts = response.data.products)
   },
 }
 </script>
