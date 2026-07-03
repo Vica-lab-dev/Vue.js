@@ -1,7 +1,8 @@
 <template>
-  <p v-if="!fetchedProducts.length">Loading products...</p>
+  <p v-if="fetchedProducts.length">Loading products...</p>
   <p v-if="apiError"> {{ apiError }}</p>
 
+  <p v-if="!isLoading && !fetchedProducts.length">No products</p>
   <ul v-if="fetchedProducts.length">
     <li v-for="product in fetchedProducts" :key="product.id">
       {{ product.title }} - ${{ product.price }} - Stock: {{ product.stock }}
@@ -17,9 +18,9 @@ export default {
 
   data() {
     return {
-      isLoading: true,
       fetchedProducts: [],
       apiError: null,
+      isLoading: false,
     };
   },
 
@@ -36,9 +37,12 @@ export default {
   },
 
   mounted() {
-    axios.get("https://dummyjson.com/products")
+    this.isLoading = true;
+
+    axios.get("https://dummyjson.com/products/search?q=phone")
         .then(response => this.fetchedProducts = response.data.products)
         .catch(() => this.apiError = "Failed to load products. Please try again later.")
+        .finally(() => this.isLoading = false)
   },
 }
 </script>
