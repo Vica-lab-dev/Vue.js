@@ -1,3 +1,13 @@
 <template>
-  <h1>This works!</h1>
+  {{ productId }}
 </template>
+
+<script>
+export default {
+  computed: {
+    productId() {
+      return this.$route.params.id;
+    }
+  }
+}
+</script>
