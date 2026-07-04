@@ -12,6 +12,11 @@ export default {
     return {
 
     }
+  },
+  beforeCreate() {
+    if(isNaN(this.$route.params.id)) {
+      this.$router.replace("/products");
+    }
   }
 }
 </script>
