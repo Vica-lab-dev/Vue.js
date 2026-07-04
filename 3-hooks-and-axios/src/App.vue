@@ -1,14 +1,11 @@
 <template>
-  Hello world from main!
-  <Products></Products>
+  <router-view></router-view>
 </template>
 
 <script>
-import Products from "@/components/Products.vue";
 
 export default {
   name: "App",
-  components: {Products},
   data() {
     return {
 
