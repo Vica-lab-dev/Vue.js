@@ -6,17 +6,19 @@
 
 <script>
 
+import SingleProduct from "@/components/SingleProduct.vue";
+
 export default {
   name: "App",
+  computed: {
+    SingleProduct() {
+      return SingleProduct
+    }
+  },
   data() {
     return {
 
     }
   },
-  beforeCreate() {
-    if(isNaN(this.$route.params.id)) {
-      this.$router.replace({name: "Products"});
-    }
-  }
 }
 </script>
