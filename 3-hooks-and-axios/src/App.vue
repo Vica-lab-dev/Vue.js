@@ -15,7 +15,7 @@ export default {
   },
   beforeCreate() {
     if(isNaN(this.$route.params.id)) {
-      this.$router.replace("/products");
+      this.$router.replace({name: "Products"});
     }
   }
 }
