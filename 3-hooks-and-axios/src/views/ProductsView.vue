@@ -1,3 +1,13 @@
 <template>
-  <h1>Products</h1>
+  <Products></Products>
 </template>
+
+<script>
+import Products from "@/components/Products.vue";
+import {defineComponent} from "vue";
+
+export default defineComponent({
+  components: {Products}
+})
+
+</script>
