@@ -4,7 +4,7 @@
 
 <script>
 
-import ProductsPage from "@/components/ProductsPage.vue";
+import ProductsPage from "@/components/Products/ProductsPage.vue";
 
 export default {
   name: 'App',
@@ -21,7 +21,7 @@ export default {
         name: "HTML Course",
         price: 150,
         length: "3 months",
-        discount: "50%"
+        discount: "30%"
       },
       {
         id: 2,

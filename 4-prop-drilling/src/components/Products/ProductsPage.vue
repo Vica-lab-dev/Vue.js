@@ -4,8 +4,8 @@
 </template>
 
 <script>
-import ProductDetails from "@/components/ProductDetails.vue";
-import DiscountedProducts from "@/components/DiscountedProducts.vue";
+import ProductDetails from "@/components/Products/ProductDetails.vue";
+import DiscountedProducts from "@/components/Products/DiscountedProducts.vue";
 
 export default {
   name: 'ProductsPage',
