@@ -1,6 +1,6 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
-  <Users></Users>
+  <Users msg="Hello prop"></Users>
 </template>
 
 <script>
