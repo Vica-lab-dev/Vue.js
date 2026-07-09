@@ -1,6 +1,6 @@
 <template>
   <p>{{ msg }}</p>
-  <Info />
+  <Info :currentDate="currentDate" />
 </template>
 
 <script>
@@ -10,7 +10,8 @@ export default {
   name: 'Users',
   components: {Info},
   props: {
-    msg: String
+    msg: String,
+    currentDate: String
   }
 }
 </script>
