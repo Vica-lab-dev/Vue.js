@@ -9,10 +9,13 @@
 
   export default defineComponent({
     name: "BankAccount",
-    data() {
+    data(): {
+      name: string,
+      age: number | null
+    } {
       return {
-        name: "Vica" as string,
-        age: 28 as number | null
+        name: "Vica",
+        age: 28
       }
     },
     methods: {
