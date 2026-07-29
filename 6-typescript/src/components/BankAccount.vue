@@ -1,6 +1,6 @@
 <template>
   <h1>My name is {{ name }}, and I'm {{ age }} years old</h1>
-  <button @click="testChange">Test change</button>
+  <button @click="testChange('Marko', 29)">Test change</button>
 </template>
 
 <script lang="ts">
@@ -16,9 +16,9 @@
       }
     },
     methods: {
-      testChange() {
-        this.name = "Marko"
-        this.age = 29
+      testChange(newName: string, newAge: number | null) {
+        this.name = newName
+        this.age = newAge
       }
     }
   })
