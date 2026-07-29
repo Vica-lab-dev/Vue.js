@@ -12,7 +12,7 @@
     data() {
       return {
         name: "Vica" as string,
-        age: 28 as number
+        age: 28 as number | null
       }
     },
     methods: {
