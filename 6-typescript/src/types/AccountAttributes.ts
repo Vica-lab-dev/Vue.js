@@ -1,7 +1,9 @@
+interface Note {
+    date: Date,
+    text: string,
+}
+
 export default interface AccountAttributes {
     createdAt: string,
-    notes: {
-        date: Date,
-        text: string
-    }[]
+    notes: Note[]
 }
