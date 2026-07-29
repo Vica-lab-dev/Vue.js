@@ -1,5 +1,5 @@
 <template>
-  <h1>{{ name }}</h1>
+  <h1>My name is {{ name }}, and I'm {{ age }} years old</h1>
   <button @click="testChange">Test change</button>
 </template>
 
@@ -11,12 +11,14 @@
     name: "BankAccount",
     data() {
       return {
-        name: "Vica" as string
+        name: "Vica" as string,
+        age: 28 as number
       }
     },
     methods: {
       testChange() {
         this.name = "Marko"
+        this.age = 29
       }
     }
   })
