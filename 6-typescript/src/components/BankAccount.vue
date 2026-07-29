@@ -3,7 +3,7 @@
   <p>Money: {{ amount }}</p>
   <p>Date: {{ attributes.createdAt }}</p>
   <ul v-for="note in attributes.notes" :key="note">
-    <li>{{ note }}</li>
+    <li>{{ note.date }} - {{ note.text}}</li>
   </ul>
 </template>
 
@@ -25,8 +25,14 @@
         attributes: {
           createdAt: "02.02.2002",
           notes: [
-            "Account opened successfully.",
-            "Monthly maintenance fee applied."
+            {
+              date: new Date("2026-07-07") ,
+              text: "Initial deposit received."
+            },
+            {
+              date: new Date("2026-08-08"),
+              text: "Monthly maintenance fee applied."
+            }
           ]
         }
       }
