@@ -1,36 +1,30 @@
 <template>
-  <h1>My name is {{ name }}, and I'm {{ age }} years old</h1>
-  <p>{{ attributes.height }}</p>
-  <button @click="testChange('Marko', 29)">Test change</button>
+  <p>Owner: {{ name }}</p>
+  <p>Money: {{ amount }}</p>
+  <p>Date: {{ attributes.createdAt }}</p>
 </template>
 
 <script lang="ts">
 
   import {defineComponent} from "vue";
-  import AttributesType from "@/types/AttributesType";
+  import AccountAttributes from "@/types/AccountAttributes";
 
   export default defineComponent({
     name: "BankAccount",
     data(): {
       name: string,
-      age: number | null,
-      attributes: AttributesType
+      amount: number | null,
+      attributes: AccountAttributes
     } {
       return {
-        name: "Vica",
-        age: 28,
+        name: "Vica M.",
+        amount: 5000.05,
         attributes: {
-          height: 181.5,
-          weight: 100.08
+          createdAt: "02.02.2002",
+          notes: []
         }
       }
     },
-    methods: {
-      testChange(newName: string, newAge: number | null) {
-        this.name = newName
-        this.age = newAge
-      }
-    }
   })
 
 </script>
