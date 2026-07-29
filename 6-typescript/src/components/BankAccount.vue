@@ -7,13 +7,14 @@
 <script lang="ts">
 
   import {defineComponent} from "vue";
+  import AttributesType from "@/types/AttributesType";
 
   export default defineComponent({
     name: "BankAccount",
     data(): {
       name: string,
       age: number | null,
-      attributes: {height: number, weight: number}
+      attributes: AttributesType
     } {
       return {
         name: "Vica",
