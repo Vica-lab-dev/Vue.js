@@ -17,9 +17,7 @@
   <div>
     <div v-for="(task, index) in tasks" :key="index">
       <p>{{ task.title }} - {{ task.description }} - {{ task.dueDate }} - {{ task.priority }}</p>
-      <form>
-        <button @click.prevent="deleteTask(index)">Delete task</button>
-      </form>
+      <button @click.prevent="deleteTask(index)">Delete task</button>
     </div>
   </div>
 </template>
