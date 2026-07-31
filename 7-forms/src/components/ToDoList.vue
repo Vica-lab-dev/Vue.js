@@ -5,12 +5,18 @@
     <input v-model="title" type="text" placeholder="Enter a task title" required>
     <input v-model="description" type="text" placeholder="Enter a description" required>
     <input v-model="dueDate" type="date" required>
+    <select v-model="priority">
+      <option>Urgent</option>
+      <option>High priority</option>
+      <option>Medium priority</option>
+      <option>Low priority</option>
+    </select>
     <button>Save</button>
   </form>
 
   <div>
     <div v-for="(task, index) in tasks" :key="index">
-      <p>{{task.title}} - {{ task.description }} - {{ task.dueDate }}</p>
+      <p>{{ task.title }} - {{ task.description }} - {{ task.dueDate }} - {{ task.priority }}</p>
     </div>
   </div>
 </template>
@@ -25,12 +31,14 @@ export default defineComponent({
     title: string
     description: string
     dueDate: string
+    priority: string
     tasks: TaskType[]
   } {
     return {
       title: "",
       description: "",
       dueDate: "",
+      priority: "",
       tasks: []
     }
   },
@@ -39,7 +47,8 @@ export default defineComponent({
       this.tasks.push({
         title: this.title,
         description: this.description,
-        dueDate: this.dueDate
+        dueDate: this.dueDate,
+        priority: this.priority,
       });
     }
   }
