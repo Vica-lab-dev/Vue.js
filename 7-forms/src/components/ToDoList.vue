@@ -7,6 +7,12 @@
     <input v-model="dueDate" type="date" required>
     <button>Save</button>
   </form>
+
+  <div>
+    <div v-for="(task, index) in tasks" :key="index">
+      <p>{{task.title}} - {{ task.description }} - {{ task.dueDate }}</p>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
