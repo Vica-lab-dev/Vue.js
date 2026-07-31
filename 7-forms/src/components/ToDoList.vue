@@ -30,12 +30,11 @@ export default defineComponent({
   },
   methods: {
     addTask() {
-      const tempTask = {
+      this.tasks.push({
         title: this.title,
         description: this.description,
         dueDate: this.dueDate
-      }
-      this.tasks.push(tempTask);
+      });
     }
   }
 });
