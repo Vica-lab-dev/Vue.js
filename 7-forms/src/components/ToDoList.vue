@@ -1,7 +1,7 @@
 <template>
   <h1>Hello World</h1>
 
-  <form @submit.prevent="addTask">
+  <form ref="taskForm" @submit.prevent="addTask">
     <input v-model="title" type="text" placeholder="Enter a task title" required>
     <input v-model="description" type="text" placeholder="Enter a description" required>
     <input v-model="dueDate" type="date" required>
@@ -17,6 +17,9 @@
   <div>
     <div v-for="(task, index) in tasks" :key="index">
       <p>{{ task.title }} - {{ task.description }} - {{ task.dueDate }} - {{ task.priority }}</p>
+      <form>
+        <button @click.prevent="deleteTask(index)">Delete task</button>
+      </form>
     </div>
   </div>
 </template>
@@ -38,6 +41,13 @@ export default defineComponent({
     }
   },
   methods: {
+    resetForm() {
+      this.title = "";
+      this.description = "";
+      this.dueDate = "";
+      this.priority = null;
+
+    },
     addTask() {
       const taskExists = this.tasks.some(task => task.title === this.title.trim());
 
@@ -52,6 +62,12 @@ export default defineComponent({
         dueDate: this.dueDate,
         priority: this.priority,
       });
+
+      this.resetForm();
+    },
+
+    deleteTask(index: number) {
+      this.tasks.splice(index, 1);
     }
   }
 });
