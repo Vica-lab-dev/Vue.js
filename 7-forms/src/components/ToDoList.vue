@@ -31,14 +31,14 @@ export default defineComponent({
     title: string
     description: string
     dueDate: string
-    priority: string
+    priority: "Urgent" | "High priority" | "Medium priority" | "Low priority" | null
     tasks: TaskType[]
   } {
     return {
       title: "",
       description: "",
       dueDate: "",
-      priority: "",
+      priority: null,
       tasks: []
     }
   },
