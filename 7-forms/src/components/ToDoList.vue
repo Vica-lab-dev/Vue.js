@@ -39,6 +39,13 @@ export default defineComponent({
   },
   methods: {
     addTask() {
+      const taskExists = this.tasks.some(task => task.title === this.title.trim());
+
+      if(taskExists) {
+        alert("This task already exists!");
+        return
+      }
+
       this.tasks.push({
         title: this.title,
         description: this.description,
