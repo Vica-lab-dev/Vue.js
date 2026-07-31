@@ -24,16 +24,11 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 import TaskType from "@/Types/TaskType";
+import FormTaskType from "@/Types/FormTaskType";
 
 export default defineComponent({
   name: "ToDoList",
-  data(): {
-    title: string
-    description: string
-    dueDate: string
-    priority: "Urgent" | "High priority" | "Medium priority" | "Low priority" | null
-    tasks: TaskType[]
-  } {
+  data(): FormTaskType {
     return {
       title: "",
       description: "",
