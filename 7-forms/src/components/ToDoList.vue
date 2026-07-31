@@ -1,7 +1,7 @@
 <template>
   <h1>Hello World</h1>
 
-  <form action="">
+  <form @submit.prevent="addTask">
     <input v-model="taskTitle" type="text" placeholder="Enter a task title" required>
     <button>Save</button>
   </form>
@@ -14,9 +14,16 @@ export default defineComponent({
   name: "ToDoList",
   data(): {
     taskTitle: string
+    tasks: Array<string>
   } {
     return {
-      taskTitle: ""
+      taskTitle: "",
+      tasks: []
+    }
+  },
+  methods: {
+    addTask() {
+      this.tasks.push(this.taskTitle);
     }
   }
 });
