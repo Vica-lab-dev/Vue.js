@@ -1,13 +1,15 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png">
+  <ToDoList />
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
-import HelloWorld from './components/HelloWorld.vue';
+import ToDoList from "@/components/ToDoList.vue";
 
 @Options({
   components: {
+    ToDoList
   },
 })
 export default class App extends Vue {}
