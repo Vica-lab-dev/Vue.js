@@ -24,7 +24,6 @@
 
 <script lang="ts">
 import {defineComponent} from "vue";
-import TaskType from "@/Types/TaskType";
 import FormTaskType from "@/Types/FormTaskType";
 
 export default defineComponent({
