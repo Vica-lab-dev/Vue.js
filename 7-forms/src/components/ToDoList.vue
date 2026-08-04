@@ -2,15 +2,15 @@
   <h1>Hello World</h1>
 
   <Form ref="taskForm" @submit.prevent="addTask">
-    <input v-model="title" type="text" placeholder="Enter a task title">
-    <input v-model="description" type="text" placeholder="Enter a description">
-    <input v-model="dueDate" type="date">
-    <select v-model="priority">
+    <Field name="title" v-model="title" type="text" placeholder="Enter a task title"></Field>
+    <Field name="description" v-model="description" type="text" placeholder="Enter a description"></Field>
+    <Field name="dueDate" type="date"></Field>
+    <Field name="priority" as="select" v-model="priority">
       <option>Urgent</option>
       <option>High priority</option>
       <option>Medium priority</option>
       <option>Low priority</option>
-    </select>
+    </Field>
     <button>Save</button>
   </Form>
 
@@ -29,7 +29,7 @@ import {Form, Field} from "vee-validate";
 
 export default defineComponent({
   name: "ToDoList",
-  components: {Form},
+  components: {Field, Form},
   data(): FormTaskType {
     return {
       title: "",
