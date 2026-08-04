@@ -1,7 +1,7 @@
 <template>
   <h1>Hello World</h1>
 
-  <Form ref="taskForm" @submit.prevent="addTask">
+  <Form ref="taskForm" @submit="addTask">
     <Field
         name="title"
         v-model="title"
