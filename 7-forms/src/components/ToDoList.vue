@@ -56,10 +56,6 @@ export default defineComponent({
     }
   },
   methods: {
-    checkForm() {
-      return !(!this.title || !this.description || !this.dueDate);
-    },
-
     resetForm() {
       this.title = "";
       this.description = "";
@@ -69,10 +65,6 @@ export default defineComponent({
     },
     addTask() {
       const taskExists = this.tasks.some(task => task.title === this.title.trim());
-
-      if(!this.checkForm()) {
-        return alert("This form is not validated!");
-      }
 
       if(taskExists) {
         alert("This task already exists!");
