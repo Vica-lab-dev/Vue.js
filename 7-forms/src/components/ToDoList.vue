@@ -11,7 +11,15 @@
     ></Field>
     <ErrorMessage name="title"></ErrorMessage>
 
-    <Field name="description" v-model="description" type="text" placeholder="Enter a description"></Field>
+    <Field
+        name="description"
+        v-model="description"
+        type="text"
+        placeholder="Enter a description"
+        rules="required|min:10|max:1000"
+    ></Field>
+    <ErrorMessage name="description"></ErrorMessage>
+
     <Field name="dueDate" type="date"></Field>
     <Field name="priority" as="select" v-model="priority">
       <option>Urgent</option>
