@@ -7,7 +7,7 @@
         v-model="title"
         type="text"
         placeholder="Enter a task title"
-        rules="required|min:3"
+        rules="required|min:3|startsWithCapital"
     ></Field>
     <ErrorMessage name="title"></ErrorMessage>
 

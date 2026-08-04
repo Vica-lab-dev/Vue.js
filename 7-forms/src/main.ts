@@ -5,7 +5,19 @@ import { defineRule } from "vee-validate";
 import { required, min, max } from "@vee-validate/rules"
 
 defineRule("required", required)
-defineRule("min", min)
-defineRule("max", max)
+defineRule("min", min);
+defineRule("max", max);
+
+defineRule("startsWithCapital", (value: string) => {
+   if(value.length === 0) {
+       return "Input must not be an empty string!";
+   }
+
+   if(value[0] !== value[0].toUpperCase()) {
+       return "String must start with a capital letter!"
+   }
+
+    return true;
+});
 
 createApp(App).mount('#app')
