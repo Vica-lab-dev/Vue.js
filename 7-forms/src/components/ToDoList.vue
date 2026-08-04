@@ -40,10 +40,7 @@ export default defineComponent({
   },
   methods: {
     checkForm() {
-      if(!this.title || !this.description || !this.dueDate) {
-        return false;
-      }
-      return true;
+      return !(!this.title || !this.description || !this.dueDate);
     },
 
     resetForm() {
