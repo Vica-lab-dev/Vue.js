@@ -2,7 +2,15 @@
   <h1>Hello World</h1>
 
   <Form ref="taskForm" @submit.prevent="addTask">
-    <Field name="title" v-model="title" type="text" placeholder="Enter a task title"></Field>
+    <Field
+        name="title"
+        v-model="title"
+        type="text"
+        placeholder="Enter a task title"
+        rules="required|min:3"
+    ></Field>
+    <ErrorMessage name="title"></ErrorMessage>
+
     <Field name="description" v-model="description" type="text" placeholder="Enter a description"></Field>
     <Field name="dueDate" type="date"></Field>
     <Field name="priority" as="select" v-model="priority">
@@ -25,11 +33,11 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 import FormTaskType from "@/Types/FormTaskType";
-import {Form, Field} from "vee-validate";
+import {Form, Field, ErrorMessage} from "vee-validate";
 
 export default defineComponent({
   name: "ToDoList",
-  components: {Field, Form},
+  components: {ErrorMessage, Field, Form},
   data(): FormTaskType {
     return {
       title: "",
