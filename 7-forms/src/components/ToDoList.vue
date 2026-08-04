@@ -2,9 +2,9 @@
   <h1>Hello World</h1>
 
   <form ref="taskForm" @submit.prevent="addTask">
-    <input v-model="title" type="text" placeholder="Enter a task title" required>
-    <input v-model="description" type="text" placeholder="Enter a description" required>
-    <input v-model="dueDate" type="date" required>
+    <input v-model="title" type="text" placeholder="Enter a task title">
+    <input v-model="description" type="text" placeholder="Enter a description">
+    <input v-model="dueDate" type="date">
     <select v-model="priority">
       <option>Urgent</option>
       <option>High priority</option>
@@ -39,6 +39,13 @@ export default defineComponent({
     }
   },
   methods: {
+    checkForm() {
+      if(!this.title || !this.description || !this.dueDate) {
+        return false;
+      }
+      return true;
+    },
+
     resetForm() {
       this.title = "";
       this.description = "";
@@ -48,6 +55,10 @@ export default defineComponent({
     },
     addTask() {
       const taskExists = this.tasks.some(task => task.title === this.title.trim());
+
+      if(!this.checkForm()) {
+        return alert("This form is not validated!");
+      }
 
       if(taskExists) {
         alert("This task already exists!");
