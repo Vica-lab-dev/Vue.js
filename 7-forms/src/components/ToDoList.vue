@@ -1,7 +1,7 @@
 <template>
   <h1>Hello World</h1>
 
-  <form ref="taskForm" @submit.prevent="addTask">
+  <Form ref="taskForm" @submit.prevent="addTask">
     <input v-model="title" type="text" placeholder="Enter a task title">
     <input v-model="description" type="text" placeholder="Enter a description">
     <input v-model="dueDate" type="date">
@@ -12,7 +12,7 @@
       <option>Low priority</option>
     </select>
     <button>Save</button>
-  </form>
+  </Form>
 
   <div>
     <div v-for="(task, index) in tasks" :key="index">
@@ -25,9 +25,11 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 import FormTaskType from "@/Types/FormTaskType";
+import {Form, Field} from "vee-validate";
 
 export default defineComponent({
   name: "ToDoList",
+  components: {Form},
   data(): FormTaskType {
     return {
       title: "",
