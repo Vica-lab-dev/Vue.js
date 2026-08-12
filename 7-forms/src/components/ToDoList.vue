@@ -42,7 +42,7 @@
 import {defineComponent} from "vue";
 import FormTaskType from "@/Types/FormTaskType";
 import {Form, Field, ErrorMessage} from "vee-validate";
-import {getAllTasks, saveTask} from "@/models/tasksModel";
+import {getAllTasks, saveTask, updateAllTasks} from "@/models/tasksModel";
 import TaskType from "@/Types/TaskType";
 
 export default defineComponent({
@@ -60,6 +60,15 @@ export default defineComponent({
 
   beforeMount() {
     this.tasks = getAllTasks() ?? [];
+  },
+
+  watch: {
+    tasks: {
+      handler(tasks: TaskType[]) {
+        updateAllTasks(tasks);
+      },
+      deep: true
+    },
   },
 
   methods: {
@@ -86,8 +95,6 @@ export default defineComponent({
         dueDate: this.dueDate,
         priority: this.priority,
       }
-
-      saveTask(task);
 
       this.tasks.push(task)
 
