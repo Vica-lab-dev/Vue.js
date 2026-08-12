@@ -12,3 +12,7 @@ export const saveTask = (task: TaskType): void => {
 
     localStorage.setItem("tasks", JSON.stringify(tasks));
 }
+
+export const updateAllTasks = (tasks: TaskType[]): void => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
