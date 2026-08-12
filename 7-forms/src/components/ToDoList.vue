@@ -42,7 +42,7 @@
 import {defineComponent} from "vue";
 import FormTaskType from "@/Types/FormTaskType";
 import {Form, Field, ErrorMessage} from "vee-validate";
-import {getAllTasks} from "@/models/tasksModel";
+import {getAllTasks, saveTask} from "@/models/tasksModel";
 
 export default defineComponent({
   name: "ToDoList",
@@ -74,12 +74,19 @@ export default defineComponent({
         return
       }
 
-      this.tasks.push({
+      saveTask({
         title: this.title,
         description: this.description,
         dueDate: this.dueDate,
         priority: this.priority,
       });
+
+      // this.tasks.push({
+      //   title: this.title,
+      //   description: this.description,
+      //   dueDate: this.dueDate,
+      //   priority: this.priority,
+      // });
 
       this.resetForm();
     },

@@ -5,3 +5,10 @@ export const getAllTasks = (): TaskType[] | null => {
 
     return tasks === null ? null : JSON.parse(tasks);
 }
+
+export const saveTask = (task: TaskType): void => {
+    const tasks = getAllTasks() ?? [];
+    tasks.push(task);
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+}
