@@ -22,10 +22,10 @@
 
     <Field name="dueDate" type="date"></Field>
     <Field name="priority" as="select" v-model="priority">
-      <option>Urgent</option>
-      <option>High priority</option>
-      <option>Medium priority</option>
-      <option>Low priority</option>
+      <option value="Urgent">Urgent</option>
+      <option value="High priority">High priority</option>
+      <option value="Medium priority">Medium priority</option>
+      <option value="Low priority">Low priority</option>
     </Field>
     <button>Save</button>
   </Form>
