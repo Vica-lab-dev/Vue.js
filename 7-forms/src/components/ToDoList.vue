@@ -42,6 +42,7 @@
 import {defineComponent} from "vue";
 import FormTaskType from "@/Types/FormTaskType";
 import {Form, Field, ErrorMessage} from "vee-validate";
+import {getAllTasks} from "@/models/tasksModel";
 
 export default defineComponent({
   name: "ToDoList",
@@ -64,6 +65,8 @@ export default defineComponent({
 
     },
     addTask() {
+      getAllTasks();
+
       const taskExists = this.tasks.some(task => task.title === this.title.trim());
 
       if(taskExists) {
