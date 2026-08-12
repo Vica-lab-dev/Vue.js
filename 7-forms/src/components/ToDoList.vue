@@ -64,7 +64,7 @@ export default defineComponent({
 
   watch: {
     tasks: {
-      handler(tasks: TaskType[]) {
+      handler(tasks: TaskType[]): void {
         updateAllTasks(tasks);
       },
       deep: true
