@@ -22,12 +22,19 @@
 
     <Field name="dueDate" type="date"></Field>
     <Field name="priority" as="select" v-model="priority">
-      <option value="Urgent">Urgent</option>
-      <option value="HighPriority">High priority</option>
-      <option value="MediumPriority">Medium priority</option>
-      <option value="LowPriority">Low priority</option>
+      <option value="urgent">Urgent</option>
+      <option value="highpriority">High priority</option>
+      <option value="mediumpriority">Medium priority</option>
+      <option value="lowpriority">Low priority</option>
     </Field>
     <button>Save</button>
+  </Form>
+
+  <Form>
+    <Field @change="changeSort" name="prioritySort" as="select" v-model="prioritySort">
+      <option value="important">by importance</option>
+      <option value="unimportant">by unimportance</option>
+    </Field>
   </Form>
 
   <div>
@@ -44,6 +51,7 @@ import FormTaskType from "@/Types/FormTaskType";
 import {Form, Field, ErrorMessage} from "vee-validate";
 import {getAllTasks, saveTask, updateAllTasks} from "@/models/tasksModel";
 import TaskType from "@/Types/TaskType";
+import {priorityOrder} from "@/Types/PriorityOrder";
 
 export default defineComponent({
   name: "ToDoList",
@@ -54,7 +62,8 @@ export default defineComponent({
       description: "",
       dueDate: "",
       priority: null,
-      tasks: [] as TaskType[]
+      tasks: [] as TaskType[],
+      prioritySort: null,
     }
   },
 
@@ -72,6 +81,19 @@ export default defineComponent({
   },
 
   methods: {
+    changeSort() {
+
+        this.tasks.sort((a, b) => {
+          const aPriority = priorityOrder[a.priority ?? "lowpriority"];
+          const bPriority = priorityOrder[b.priority ?? "lowpriority"];
+
+          return this.prioritySort === "important"
+          ? aPriority - bPriority
+              : bPriority - aPriority;
+        });
+
+    },
+
     resetForm() {
       this.title = "";
       this.description = "";
