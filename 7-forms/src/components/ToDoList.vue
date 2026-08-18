@@ -53,6 +53,7 @@ import {Form, Field, ErrorMessage} from "vee-validate";
 import {generateRandomId, getAllTasks, saveTask, updateAllTasks} from "@/models/tasksModel";
 import TaskType from "@/Types/TaskType";
 import {priorityOrder} from "@/Types/PriorityOrder";
+import {isIdUsed} from "@/helpers/idHelper";
 
 export default defineComponent({
   name: "ToDoList",
@@ -111,6 +112,12 @@ export default defineComponent({
       if(taskExists) {
         alert("This task already exists!");
         return
+      }
+
+      let tempId = generateRandomId();
+
+      if(isIdUsed(tempId, this.tasks)) {
+        tempId = generateRandomId();
       }
 
       const task = {
