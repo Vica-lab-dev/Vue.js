@@ -20,7 +20,8 @@
     ></Field>
     <ErrorMessage name="description"></ErrorMessage>
 
-    <Field name="dueDate" type="date"></Field>
+    <Field name="dueDate" type="date" v-model="dueDate"></Field>
+
     <Field name="priority" as="select" v-model="priority">
       <option value="urgent">Urgent</option>
       <option value="highpriority">High priority</option>
