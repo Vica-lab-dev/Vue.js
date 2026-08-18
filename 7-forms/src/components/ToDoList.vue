@@ -50,7 +50,7 @@
 import {defineComponent} from "vue";
 import FormTaskType from "@/Types/FormTaskType";
 import {Form, Field, ErrorMessage} from "vee-validate";
-import {getAllTasks, saveTask, updateAllTasks} from "@/models/tasksModel";
+import {generateRandomId, getAllTasks, saveTask, updateAllTasks} from "@/models/tasksModel";
 import TaskType from "@/Types/TaskType";
 import {priorityOrder} from "@/Types/PriorityOrder";
 
@@ -59,6 +59,7 @@ export default defineComponent({
   components: {ErrorMessage, Field, Form},
   data(): FormTaskType {
     return {
+      id: "",
       title: "",
       description: "",
       dueDate: "",
@@ -113,6 +114,7 @@ export default defineComponent({
       }
 
       const task = {
+        id: generateRandomId(),
         title: this.title,
         description: this.description,
         dueDate: this.dueDate,
