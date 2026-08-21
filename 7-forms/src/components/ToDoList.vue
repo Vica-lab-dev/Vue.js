@@ -28,6 +28,12 @@
       <option value="mediumpriority">Medium priority</option>
       <option value="lowpriority">Low priority</option>
     </Field>
+
+    <Field name="board" as="select" v-model="board">
+      <option value="todo">To Do</option>
+      <option value="doing">Doing</option>
+      <option value="done">Done</option>
+    </Field>
     <button>Save</button>
   </Form>
 
@@ -40,7 +46,7 @@
 
   <div>
     <div v-for="(task, index) in tasks" :key="index">
-      <p>{{ task.title }} - {{ task.description }} - {{ task.dueDate }} - {{ task.priority }}</p>
+      <p>{{ task.title }} - {{ task.description }} - {{ task.dueDate }} - {{ task.priority }} - {{ task.board }}</p>
       <button @click.prevent="deleteTask(index)">Delete task</button>
     </div>
   </div>
@@ -67,6 +73,7 @@ export default defineComponent({
       priority: null,
       tasks: [] as TaskType[],
       prioritySort: null,
+      board: null,
     }
   },
 
@@ -126,6 +133,7 @@ export default defineComponent({
         description: this.description,
         dueDate: this.dueDate,
         priority: this.priority,
+        board: this.board,
       }
 
       this.tasks.push(task)

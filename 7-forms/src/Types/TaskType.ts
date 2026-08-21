@@ -3,5 +3,6 @@ export default interface TaskType {
     title: string
     description: string
     dueDate: string,
-    priority: "Urgent" | "High priority" | "Medium priority" | "Low priority" | null
+    priority: "urgent" | "highpriority" | "mediumpriority" | "lowpriority" | null,
+    board: "todo" | "doing" | "done" | null,
 }
