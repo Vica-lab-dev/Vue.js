@@ -313,7 +313,7 @@ export default defineComponent({
 
     },
 
-    addTask(newTask: any) {
+    addTask(newTask: TaskType) {
       getAllTasks();
 
       const taskExists = this.tasks.some(task => task.title === newTask.title.trim());
