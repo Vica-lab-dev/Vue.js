@@ -42,7 +42,7 @@
 
             <div class="task-meta">
               <span> {{ task.dueDate }}</span>
-              <span>⚡ {{ task.priority }}</span>
+              <span> {{ task.priority }}</span>
               <span> {{ task.board }}</span>
             </div>
           </div>
@@ -251,7 +251,6 @@ width: 100%;
 
 <script lang="ts">
 import {defineComponent} from "vue";
-import FormTaskType from "@/Types/FormTaskType";
 import {Form, Field} from "vee-validate";
 import {generateRandomId, getAllTasks, saveTask, updateAllTasks} from "@/models/tasksModel";
 import TaskType from "@/Types/TaskType";
@@ -263,16 +262,11 @@ import CreateTask from "@/components/tasks/createTask.vue";
 export default defineComponent({
   name: "ToDoList",
   components: {CreateTask, Field, Form},
-  data(): FormTaskType {
+  data() {
     return {
       id: "",
-      title: "",
-      description: "",
-      dueDate: "",
-      priority: null,
       tasks: [] as TaskType[],
       prioritySort: null,
-      board: "todo",
     }
   },
 
@@ -319,17 +313,10 @@ export default defineComponent({
 
     },
 
-    resetForm() {
-      this.title = "";
-      this.description = "";
-      this.dueDate = "";
-      this.priority = null;
-
-    },
-    addTask() {
+    addTask(newTask: any) {
       getAllTasks();
 
-      const taskExists = this.tasks.some(task => task.title === this.title.trim());
+      const taskExists = this.tasks.some(task => task.title === newTask.title.trim());
 
       if(taskExists) {
         alert("This task already exists!");
@@ -344,16 +331,14 @@ export default defineComponent({
 
       const task = {
         id: generateRandomId(),
-        title: this.title,
-        description: this.description,
-        dueDate: this.dueDate,
-        priority: this.priority,
-        board: this.board,
+        title: newTask.title,
+        description: newTask.description,
+        dueDate: newTask.dueDate,
+        priority: newTask.priority,
+        board: newTask.board,
       }
 
       this.tasks.push(task)
-
-      this.resetForm();
     },
 
     deleteTask(index: number) {
