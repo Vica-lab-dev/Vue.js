@@ -1,75 +1,7 @@
 <template>
   <h1>Hello World</h1>
 
-  <Form class="task-form" ref="taskForm" @submit="addTask">
-    <h2>Create a task</h2>
-
-    <div class="form-group">
-      <Field
-          class="form-input"
-          name="title"
-          v-model="title"
-          type="text"
-          placeholder="Enter a task title"
-          rules="required|min:3|startsWithCapital|minWords:5"
-      ></Field>
-      <ErrorMessage class="error-message" name="title"></ErrorMessage>
-    </div>
-
-    <div class="form-group">
-      <Field
-          class="form-input"
-          name="description"
-          v-model="description"
-          type="text"
-          placeholder="Enter a description"
-          rules="required|min:10|max:1000"
-      ></Field>
-      <ErrorMessage class="error-message" name="description"></ErrorMessage>
-    </div>
-
-    <div class="form-row">
-      <div class="form-group">
-        <Field
-            class="form-input"
-            name="dueDate"
-            type="date"
-            v-model="dueDate"
-        ></Field>
-      </div>
-
-      <div class="form-group">
-        <Field
-            class="form-input"
-            name="priority"
-            as="select"
-            v-model="priority"
-        >
-          <option value="urgent">Urgent</option>
-          <option value="highpriority">High priority</option>
-          <option value="mediumpriority">Medium priority</option>
-          <option value="lowpriority">Low priority</option>
-        </Field>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <Field
-          class="form-input"
-          name="board"
-          as="select"
-          v-model="board"
-      >
-        <option value="todo">To Do</option>
-        <option value="doing">Doing</option>
-        <option value="done">Done</option>
-      </Field>
-    </div>
-
-    <button class="save-button" type="submit">
-      Save task
-    </button>
-  </Form>
+  <createTask></createTask>
 
   <Form class="sort-form">
     <label for="prioritySort">Sort tasks</label>
@@ -320,16 +252,17 @@ width: 100%;
 <script lang="ts">
 import {defineComponent} from "vue";
 import FormTaskType from "@/Types/FormTaskType";
-import {Form, Field, ErrorMessage} from "vee-validate";
+import {Form, Field} from "vee-validate";
 import {generateRandomId, getAllTasks, saveTask, updateAllTasks} from "@/models/tasksModel";
 import TaskType from "@/Types/TaskType";
 import {priorityOrder} from "@/Types/PriorityOrder";
 import {isIdUsed} from "@/helpers/idHelper";
 import {BoardType} from "@/Types/boards/BoardType";
+import CreateTask from "@/components/tasks/createTask.vue";
 
 export default defineComponent({
   name: "ToDoList",
-  components: {ErrorMessage, Field, Form},
+  components: {CreateTask, Field, Form},
   data(): FormTaskType {
     return {
       id: "",
