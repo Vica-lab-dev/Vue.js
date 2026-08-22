@@ -8,45 +8,7 @@
       @change-sort="changeSort">
   </sort-task>
 
-  <div class="allTasks">
-    <div
-        class="task-group"
-        v-for="(tasksInGroup, index) in groupedTypes"
-        :key="index"
-    >
-      <h2 class="group-title">{{ index }}</h2>
-
-      <div class="task-list">
-        <div
-            class="task-card"
-            v-for="(task, id) in tasksInGroup"
-            :key="id"
-        >
-          <div class="task-content">
-            <h3>{{ task.title }}</h3>
-
-            <p class="task-description">
-              {{ task.description }}
-            </p>
-
-            <div class="task-meta">
-              <span> {{ task.dueDate }}</span>
-              <span> {{ task.priority }}</span>
-              <span> {{ task.board }}</span>
-            </div>
-          </div>
-
-          <button
-              class="delete-button"
-              type="button"
-              @click.prevent="deleteTask(id)"
-          >
-            Delete
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
+  <AllTasks :groupedTasks="groupedTasks"></AllTasks>
 </template>
 <style>
 .task-form,
@@ -240,7 +202,6 @@ width: 100%;
 
 <script lang="ts">
 import {defineComponent} from "vue";
-import {Form, Field} from "vee-validate";
 import {generateRandomId, getAllTasks, saveTask, updateAllTasks} from "@/models/tasksModel";
 import TaskType from "@/Types/TaskType";
 import {priorityOrder} from "@/Types/PriorityOrder";
@@ -248,10 +209,11 @@ import {isIdUsed} from "@/helpers/idHelper";
 import {BoardType} from "@/Types/boards/BoardType";
 import CreateTask from "@/components/tasks/createTask.vue";
 import SortTask from "@/components/tasks/sortTask.vue";
+import AllTasks from "@/components/tasks/allTasks.vue";
 
 export default defineComponent({
   name: "ToDoList",
-  components: {SortTask, CreateTask},
+  components: {AllTasks, SortTask, CreateTask},
   data() {
     return {
       id: "",
@@ -265,7 +227,7 @@ export default defineComponent({
   },
 
   computed: {
-    groupedTypes(): Record<BoardType, TaskType[]> {
+    groupedTasks(): Record<BoardType, TaskType[]> {
       const groups: Record<BoardType, TaskType[]> = {
         todo: [],
         doing: [],
