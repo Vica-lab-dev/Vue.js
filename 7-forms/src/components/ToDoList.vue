@@ -45,9 +45,12 @@
   </Form>
 
   <div>
-    <div v-for="(task, index) in tasks" :key="index">
-      <p>{{ task.title }} - {{ task.description }} - {{ task.dueDate }} - {{ task.priority }} - {{ task.board }}</p>
-      <button @click.prevent="deleteTask(index)">Delete task</button>
+    <div v-for="(tasksInGroup, index) in groupedTypes" :key="index">
+      <p>{{index}}</p>
+      <div v-for="(task, id) in tasksInGroup" :key="id">
+        <p>{{ task.title }} - {{ task.description }} - {{ task.dueDate }} - {{ task.priority }} - {{ task.board }}</p>
+        <button @click.prevent="deleteTask(id)">Delete task</button>
+      </div>
     </div>
   </div>
 </template>
@@ -60,6 +63,7 @@ import {generateRandomId, getAllTasks, saveTask, updateAllTasks} from "@/models/
 import TaskType from "@/Types/TaskType";
 import {priorityOrder} from "@/Types/PriorityOrder";
 import {isIdUsed} from "@/helpers/idHelper";
+import {BoardType} from "@/Types/boards/BoardType";
 
 export default defineComponent({
   name: "ToDoList",
@@ -73,12 +77,28 @@ export default defineComponent({
       priority: null,
       tasks: [] as TaskType[],
       prioritySort: null,
-      board: null,
+      board: "todo",
     }
   },
 
   beforeMount() {
     this.tasks = getAllTasks() ?? [];
+  },
+
+  computed: {
+    groupedTypes(): Record<BoardType, TaskType[]> {
+      const groups: Record<BoardType, TaskType[]> = {
+        todo: [],
+        doing: [],
+        done: [],
+      };
+
+      for(const task of this.tasks) {
+        groups[task.board].push(task);
+      }
+
+      return groups;
+    }
   },
 
   watch: {
