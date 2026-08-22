@@ -1,7 +1,7 @@
 <template>
   <h1>Hello World</h1>
 
-  <createTask></createTask>
+  <createTask @add-task="addTask"></createTask>
 
   <Form class="sort-form">
     <label for="prioritySort">Sort tasks</label>
