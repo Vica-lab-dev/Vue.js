@@ -35,7 +35,7 @@ function handleSubmit() {
 </script>
 
 <template>
-  <Form class="task-form" ref="taskForm" @submit="addTask">
+  <Form class="task-form" ref="taskForm" @submit="handleSubmit">
     <h2>Create a task</h2>
 
     <div class="form-group">
