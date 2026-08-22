@@ -2,22 +2,11 @@
   <h1>Hello World</h1>
 
   <createTask @add-task="addTask"></createTask>
-
-  <Form class="sort-form">
-    <label for="prioritySort">Sort tasks</label>
-
-    <Field
-        id="prioritySort"
-        class="form-input"
-        @change="changeSort"
-        name="prioritySort"
-        as="select"
-        v-model="prioritySort"
-    >
-      <option value="important">By importance</option>
-      <option value="unimportant">By unimportance</option>
-    </Field>
-  </Form>
+  <sort-task
+      :prioritySort="prioritySort"
+      @update:prioritySort="prioritySort = $event"
+      @change-sort="changeSort">
+  </sort-task>
 
   <div class="allTasks">
     <div
@@ -258,10 +247,11 @@ import {priorityOrder} from "@/Types/PriorityOrder";
 import {isIdUsed} from "@/helpers/idHelper";
 import {BoardType} from "@/Types/boards/BoardType";
 import CreateTask from "@/components/tasks/createTask.vue";
+import SortTask from "@/components/tasks/sortTask.vue";
 
 export default defineComponent({
   name: "ToDoList",
-  components: {CreateTask, Field, Form},
+  components: {SortTask, CreateTask},
   data() {
     return {
       id: "",
