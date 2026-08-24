@@ -8,7 +8,7 @@
       @change-sort="changeSort">
   </sort-task>
 
-  <AllTasks :groupedTasks="groupedTasks"></AllTasks>
+  <AllTasks :groupedTasks="groupedTasks" @delete-task="deleteTask"></AllTasks>
 </template>
 <style>
 .task-form,
@@ -293,8 +293,8 @@ export default defineComponent({
       this.tasks.push(task)
     },
 
-    deleteTask(index: number) {
-      this.tasks.splice(index, 1);
+    deleteTask(id: string) {
+      this.tasks = this.tasks.filter(task => task.id !== id);
     }
   }
 });

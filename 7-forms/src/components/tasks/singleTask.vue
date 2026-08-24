@@ -1,10 +1,16 @@
 <script setup lang="ts">
-import { defineProps } from "vue";
+import { defineProps, defineEmits } from "vue";
 import TaskType from "@/Types/TaskType";
 
 const props = defineProps<{
   task: TaskType
 }>();
+
+const emit = defineEmits<{(e: "delete-task", id: string): void; }>();
+
+function handleDelete() {
+  emit("delete-task", props.task.id);
+}
 </script>
 <template>
   <div class="task-card">
@@ -25,7 +31,7 @@ const props = defineProps<{
     <button
         class="delete-button"
         type="button"
-        @click.prevent="deleteTask(id)"
+        @click.prevent="handleDelete"
     >
       Delete
     </button>
