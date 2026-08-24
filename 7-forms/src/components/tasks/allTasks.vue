@@ -30,3 +30,25 @@ const emit = defineEmits<{(e: "delete-task", id: string): void; }>();
     </div>
   </div>
 </template>
+
+<style>
+  .allTasks {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+  }
+  .task-group {
+    margin-bottom: 35px;
+  }
+  .group-title {
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #eee;
+    font-size: 22px;
+  }
+  .task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+</style>
