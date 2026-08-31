@@ -161,7 +161,7 @@ const closePopup = () => {
     justify-content: center;
     align-items: center;
   }
-  .popup-content h4, p {
+  .popup-content p {
     color: white;
   }
 </style>
