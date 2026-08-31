@@ -23,11 +23,7 @@ defineRule("startsWithCapital", (value: string) => {
 defineRule("minWords", (value: string, [minWords]: [number]) => {
      const wordCount = value.trim().split(" ").length;
 
-     if(wordCount < minWords) {
-         return `Input must contain at least ${minWords} words!`
-     }
-
-     return true;
+     return wordCount < minWords ? `Input must contain at least ${minWords} words!` : true;
 });
 
 createApp(App).mount('#app')
