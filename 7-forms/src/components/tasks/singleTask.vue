@@ -40,8 +40,12 @@ const closePopup = () => {
 
     <button class="popup-button" type="button" @click="openPopup">Details</button>
 
-    <div v-if="showPopup" class="popup">
-      <button @click="closePopup" class="close-popup-button">Close details</button>
+    <div v-if="showPopup" @click.self="closePopup" class="popup-overlay">
+      <div class="popup">
+        <button @click="closePopup" class="close-popup-button">
+          Close details
+        </button>
+      </div>
     </div>
 
     <button
@@ -80,13 +84,11 @@ const closePopup = () => {
     color: #666;
     line-height: 1.5;
   }
-
   .task-meta {
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
   }
-
   .task-meta span {
     padding: 5px 9px;
     border-radius: 5px;
@@ -104,7 +106,6 @@ const closePopup = () => {
     cursor: pointer;
     transition: all 0.2s;
   }
-
   .delete-button:hover {
     background: #dc2626;
     color: white;
@@ -121,10 +122,9 @@ const closePopup = () => {
   }
   .popup {
     position: relative;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 300px;
+    padding: 50px;
+    width: 400px;
+    height: 400px;
     background: #2678dc;
     border-radius: 12px;
     box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
@@ -143,9 +143,15 @@ const closePopup = () => {
     bottom: 10px;
     right: 10px;
   }
-
   .close-popup-button:hover {
     background: #dc2626;
     color: white;
+  }
+  .popup-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 </style>
