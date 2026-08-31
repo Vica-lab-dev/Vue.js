@@ -32,9 +32,9 @@ const closePopup = () => {
       </p>
 
       <div class="task-meta">
-        <span> {{ task.dueDate }}</span>
-        <span> {{ task.priority }}</span>
-        <span> {{ task.board }}</span>
+        <span>{{ task.dueDate }}</span>
+        <span>{{ task.priority }}</span>
+        <span>{{ task.board }}</span>
       </div>
     </div>
 
@@ -42,6 +42,13 @@ const closePopup = () => {
 
     <div v-if="showPopup" @click.self="closePopup" class="popup-overlay">
       <div class="popup">
+        <div class="popup-content">
+          <h2> {{ task.title }}</h2>
+          <p>Description: {{ task.description }}</p>
+          <p>DueDate: {{ task.dueDate }}</p>
+          <p>Priority: {{ task.priority }}</p>
+          <p>Board: {{ task.board }}</p>
+        </div>
         <button @click="closePopup" class="close-popup-button">
           Close details
         </button>
@@ -153,5 +160,8 @@ const closePopup = () => {
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .popup-content h4, p {
+    color: white;
   }
 </style>
