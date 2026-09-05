@@ -1,9 +1,13 @@
 <script setup lang="ts">
+  import { defineEmits } from 'vue'
+
+  const emit = defineEmits(["close-details"]);
 </script>
 <template>
   <div class="popup-overlay">
     <div class="popup">
       <h2>Task Details</h2>
+      <button class="close-popup-button" @click="emit('close-details')">Close</button>
     </div>
   </div>
 </template>

@@ -17,6 +17,10 @@ const props = defineProps<{
 
 const emit = defineEmits<{(e: "delete-task", id: string): void; }>();
 
+function closePopup() {
+  showPopup.value = false;
+}
+
 </script>
 
 <template>
@@ -38,7 +42,7 @@ const emit = defineEmits<{(e: "delete-task", id: string): void; }>();
     </div>
   </div>
 
-  <PopupTask v-if="showPopup"></PopupTask>
+  <PopupTask v-if="showPopup" @close-details="closePopup"></PopupTask>
 </template>
 
 <style>
