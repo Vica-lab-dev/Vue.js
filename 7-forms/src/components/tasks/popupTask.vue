@@ -1,12 +1,17 @@
 <script setup lang="ts">
-  import { defineEmits } from 'vue'
+  import {defineEmits, defineProps} from 'vue'
+  import TaskType from "@/Types/TaskType";
+
+  const props = defineProps<{ task: TaskType | null}>();
 
   const emit = defineEmits(["close-details"]);
 </script>
 <template>
   <div class="popup-overlay" @click.self="emit('close-details')">
     <div class="popup">
-      <h2>Task Details</h2>
+      <h2>{{ task?.title }}</h2>
+      <p>{{ task?.description }}</p>
+      <p>{{ task?.dueDate }}</p>
       <button class="close-popup-button" @click="emit('close-details')">Close</button>
     </div>
   </div>
