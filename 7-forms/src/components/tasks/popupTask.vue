@@ -4,7 +4,7 @@
   const emit = defineEmits(["close-details"]);
 </script>
 <template>
-  <div class="popup-overlay">
+  <div class="popup-overlay" @click.self="emit('close-details')">
     <div class="popup">
       <h2>Task Details</h2>
       <button class="close-popup-button" @click="emit('close-details')">Close</button>
