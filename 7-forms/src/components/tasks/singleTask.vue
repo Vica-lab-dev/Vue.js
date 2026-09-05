@@ -6,22 +6,20 @@ const props = defineProps<{
   task: TaskType
 }>();
 
-const emit = defineEmits<{(e: "delete-task", id: string): void; }>();
+const emit = defineEmits<{
+  (e: "delete-task", id: string): void;
+  (e: "show-popup"): void;
+}>();
 
 function handleDelete() {
   emit("delete-task", props.task.id);
 }
 
-const showPopup = ref(false);
-
-const openPopup = () => {
-  showPopup.value = true;
-}
-
-const closePopup = () => {
-  showPopup.value = false;
+function handleShowPopup() {
+  emit("show-popup");
 }
 </script>
+
 <template>
   <div class="task-card">
     <div class="task-content">
@@ -38,22 +36,7 @@ const closePopup = () => {
       </div>
     </div>
 
-    <button class="popup-button" type="button" @click="openPopup">Details</button>
-
-    <div v-if="showPopup" @click.self="closePopup" class="popup-overlay">
-      <div class="popup">
-        <div class="popup-content">
-          <h2> {{ task.title }}</h2>
-          <p>Description: {{ task.description }}</p>
-          <p>DueDate: {{ task.dueDate }}</p>
-          <p>Priority: {{ task.priority }}</p>
-          <p>Board: {{ task.board }}</p>
-        </div>
-        <button @click="closePopup" class="close-popup-button">
-          Close details
-        </button>
-      </div>
-    </div>
+    <button class="popup-button" type="button" @click="handleShowPopup">Details</button>
 
     <button
         class="delete-button"
@@ -126,42 +109,5 @@ const closePopup = () => {
     color: #2678dc;
     cursor: pointer;
     transition: all 0.2s;
-  }
-  .popup {
-    position: relative;
-    padding: 50px;
-    width: 400px;
-    height: 400px;
-    background: #2678dc;
-    border-radius: 12px;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
-    z-index: 100;
-  }
-  .close-popup-button {
-    flex-shrink: 0;
-    padding: 8px 12px;
-    border: 1px solid white;
-    border-radius: 6px;
-    background: transparent;
-    color: white;
-    cursor: pointer;
-    transition: all 0.2s;
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-  }
-  .close-popup-button:hover {
-    background: #dc2626;
-    color: white;
-  }
-  .popup-overlay {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .popup-content p {
-    color: white;
   }
 </style>

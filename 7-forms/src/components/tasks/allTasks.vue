@@ -1,8 +1,15 @@
 <script setup lang="ts">
-import {defineEmits, defineProps} from "vue";
+import {defineEmits, defineProps, ref} from "vue";
 import {BoardType} from "@/Types/boards/BoardType";
 import TaskType from "@/Types/TaskType";
 import SingleTask from "@/components/tasks/singleTask.vue";
+import PopupTask from "@/components/tasks/popupTask.vue";
+
+const showPopup = ref(false);
+
+function openPopup() {
+  showPopup.value = true;
+}
 
 const props = defineProps<{
   groupedTasks: Record<BoardType, TaskType[]>
@@ -25,10 +32,13 @@ const emit = defineEmits<{(e: "delete-task", id: string): void; }>();
         <SingleTask v-for="task in tasksInGroup"
         :key="task.id" :task="task"
         @delete-task="emit('delete-task', $event)"
+        @show-popup="openPopup"
         ></SingleTask>
       </div>
     </div>
   </div>
+
+  <PopupTask v-if="showPopup"></PopupTask>
 </template>
 
 <style>
