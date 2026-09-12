@@ -29,23 +29,33 @@ function closePopup() {
 </script>
 
 <template>
-  <div class="allTasks">
-    <div
-        class="task-group"
-        v-for="(tasksInGroup, index) in groupedTasks"
-        :key="index"
-    >
-      <h2 class="group-title">{{ index }}</h2>
 
-      <div class="task-list">
-        <SingleTask v-for="task in tasksInGroup"
-        :key="task.id" :task="task"
-        @delete-task="emit('delete-task', $event)"
-        @show-popup="openPopup"
-        ></SingleTask>
+  <div class="mainDiv">
+
+    <div class="header">
+      <button class="create-btn">Create task</button>
+    </div>
+
+    <div class="allTasks">
+      <div
+          class="task-group"
+          v-for="(tasksInGroup, index) in groupedTasks"
+          :key="index"
+      >
+        <h2 class="group-title">{{ index }}</h2>
+
+        <div class="task-list">
+          <SingleTask v-for="task in tasksInGroup"
+                      :key="task.id" :task="task"
+                      @delete-task="emit('delete-task', $event)"
+                      @show-popup="openPopup"
+          ></SingleTask>
+        </div>
       </div>
     </div>
   </div>
+
+
 
   <PopupTask v-if="showPopup" @close-details="closePopup" :task="selectedTask"></PopupTask>
 </template>
@@ -69,5 +79,22 @@ function closePopup() {
     display: flex;
     flex-direction: column;
     gap: 12px;
+  }
+  .create-btn {
+    background-color: #315194;
+    border: none;
+    color: white;
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+  }
+  .mainDiv {
+    background-color: #f4f5f7;
+  }
+  .header {
+    display: flex;
+    margin-left: 15px;
   }
 </style>
